@@ -33,7 +33,7 @@ export class Board {
   password: string;
 
   @Column({
-    default: null,
+    readonly: true,
     type: 'varchar',
     comment: '해당 컬럼은 게시글 업로드 시점의 날씨를 나타냅니다.',
   })
