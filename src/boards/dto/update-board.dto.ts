@@ -1,4 +1,8 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateBoardDto } from './create-board.dto';
+import { PickType } from '@nestjs/swagger';
+import { Board } from '../entities/board.entity';
 
-export class UpdateBoardDto extends PartialType(CreateBoardDto) {}
+export class UpdateBoardDto extends PickType(Board, [
+  'title',
+  'content',
+  'password',
+]) {}
