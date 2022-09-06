@@ -1,3 +1,4 @@
+import { timestamp } from 'rxjs';
 import {
   Column,
   CreateDateColumn,
@@ -32,17 +33,20 @@ export class Board {
   password: string;
 
   @Column({
+    default: null,
     type: 'varchar',
     comment: '해당 컬럼은 게시글 업로드 시점의 날씨를 나타냅니다.',
   })
-  weather: string;
+  weather?: string;
 
   @CreateDateColumn({
+    type: 'timestamp',
     comment: '해당 컬럼은 게시글 등록일을 나타냅니다.',
   })
   createdAt: Date;
 
   @UpdateDateColumn({
+    type: 'timestamp',
     comment: '해당 컬럼은 게시글 수정일을 나타냅니다.',
   })
   updatedAt: Date;
