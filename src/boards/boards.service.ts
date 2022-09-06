@@ -1,7 +1,6 @@
 import {
   ForbiddenException,
   Injectable,
-  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateBoardDto } from './dto/create-board.dto';
@@ -10,12 +9,17 @@ import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Board } from './entities/board.entity';
 import { Repository } from 'typeorm';
+import { HttpService } from '@nestjs/axios';
+import { firstValueFrom } from 'rxjs';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class BoardsService {
   constructor(
     @InjectRepository(Board)
     private readonly boardRepository: Repository<Board>,
+    private readonly httpService: HttpService,
+    private readonly configService: ConfigService,
   ) {}
 
   async create(createBoardDto: CreateBoardDto): Promise<number> {
@@ -24,10 +28,15 @@ export class BoardsService {
     // 비밀번호 암호화
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // 날씨 가져오기
+    const currentCondition = await this.getWeatherCurrentCondition();
+    const weather = currentCondition.text;
+
     // Entity 저장
     const savedBoard = await this.boardRepository.save({
       title,
       content,
+      weather,
       password: hashedPassword,
     });
 
@@ -85,5 +94,14 @@ export class BoardsService {
     }
     board.isDeleted = true;
     await this.boardRepository.save(board);
+  }
+
+  async getWeatherCurrentCondition() {
+    const REALTIME_API_URL = this.configService.get<string>('REALTIME_API_URL');
+    const response = await firstValueFrom(
+      this.httpService.get(REALTIME_API_URL),
+    );
+
+    return response.data.current.condition;
   }
 }
