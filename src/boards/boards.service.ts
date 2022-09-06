@@ -10,7 +10,6 @@ import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Board } from './entities/board.entity';
 import { Repository } from 'typeorm';
-import { raw } from 'express';
 
 @Injectable()
 export class BoardsService {
@@ -35,8 +34,24 @@ export class BoardsService {
     return savedBoard.id;
   }
 
-  findAll() {
-    return `This action returns all boards`;
+  async findAll(pageNo: number): Promise<Board[]> {
+    if (pageNo === 0) return [];
+    const pageSize = 20;
+    pageNo = pageNo || 1;
+
+    return await this.boardRepository.find({
+      select: {
+        id: true,
+        title: true,
+        weather: true,
+        content: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      order: { createdAt: 'desc' },
+      skip: (pageNo - 1) * pageSize, // 시작 인덱스
+      take: pageSize, // 페이지 당 데이터 수
+    });
   }
 
   async findOne(id: number) {

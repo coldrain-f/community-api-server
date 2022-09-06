@@ -8,6 +8,7 @@ import {
   Delete,
   Logger,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
@@ -23,8 +24,8 @@ export class BoardsController {
   }
 
   @Get()
-  findAll() {
-    return this.boardsService.findAll();
+  findAll(@Query('page', ParseIntPipe) page: number) {
+    return this.boardsService.findAll(page);
   }
 
   @Get(':id')
