@@ -15,6 +15,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         password: configService.get('DATABASE_PASSWORD'),
         database: configService.get('DATABASE_NAME'),
         entities: ['dist/**/*.entity{.ts,.js}'],
+        charset: 'utf8mb4_unicode_ci',
         synchronize: true,
         logging: true,
       }),
