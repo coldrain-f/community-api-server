@@ -22,6 +22,11 @@ export class BoardsService {
     private readonly configService: ConfigService,
   ) {}
 
+  /**
+   * 게시글 등록
+   * @param createBoardDto 게시글의 제목, 내용, 비밀번호
+   * @returns 등록된 게시글의 번호
+   */
   async create(createBoardDto: CreateBoardDto): Promise<number> {
     const { title, content, password } = createBoardDto;
 
@@ -43,6 +48,11 @@ export class BoardsService {
     return savedBoard.id;
   }
 
+  /**
+   * 게시글 조회 페이징
+   * @param pageNo 페이지 번호
+   * @returns 페이지 번호에 해당하는 20개의 게시글 배열
+   */
   async findAll(pageNo: number): Promise<Board[]> {
     if (pageNo === 0) return [];
     const pageSize = 20;
@@ -63,6 +73,11 @@ export class BoardsService {
     });
   }
 
+  /**
+   * 게시글 상세 조회
+   * @param id 게시글 번호
+   * @returns 게시글 번호에 해당하는 단일 게시글
+   */
   async findOne(id: number) {
     const board = await this.boardRepository.findOne({
       where: { id, isDeleted: false },
@@ -73,6 +88,12 @@ export class BoardsService {
     return board;
   }
 
+  /**
+   * 게시글 수정
+   * 요청한 비밀번호와 실제 게시글의 비밀번호가 일치하면 수정된다.
+   * @param id 게시글 번호
+   * @param updateBoardDto 게시글의 제목, 내용, 비밀번호
+   */
   async update(id: number, updateBoardDto: UpdateBoardDto) {
     const { title, content, password } = updateBoardDto;
     const board = await this.findOne(id);
@@ -86,6 +107,12 @@ export class BoardsService {
     await this.boardRepository.save(board);
   }
 
+  /**
+   * 게시글 삭제 (Soft Delete)
+   * 요청한 비밀번호와 실제 게시글의 비밀번호가 일치하면 삭제된다.
+   * @param id 게시글 번호
+   * @param password 요청 비밀번호
+   */
   async remove(id: number, password: string) {
     const board = await this.findOne(id);
 
