@@ -1,8 +1,15 @@
-import { PickType } from '@nestjs/swagger';
-import { Board } from '../entities/board.entity';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class UpdateBoardDto extends PickType(Board, [
-  'title',
-  'content',
-  'password',
-]) {}
+export class UpdateBoardDto {
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsNotEmpty()
+  content: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+}

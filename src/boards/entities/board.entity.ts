@@ -1,4 +1,4 @@
-import { timestamp } from 'rxjs';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import {
   Column,
   CreateDateColumn,
