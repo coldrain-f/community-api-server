@@ -1,4 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 import * as bcrypt from 'bcrypt';
@@ -17,13 +22,13 @@ export class BoardsService {
     const { title, content, password } = createBoardDto;
 
     // 비밀번호 암호화
-    const hashdPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Entity 저장
     const savedBoard = await this.boardRepository.save({
       title,
       content,
-      password: hashdPassword,
+      password: hashedPassword,
     });
 
     return savedBoard.id;
@@ -41,7 +46,19 @@ export class BoardsService {
     return `This action updates a #${id} board`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} board`;
+  async remove(id: number, password: string) {
+    const board = await this.boardRepository.findOne({
+      where: { id, isDeleted: false },
+    });
+
+    if (!board) {
+      throw new NotFoundException('게시글을 찾을 수 없습니다.');
+    }
+
+    if (!(await bcrypt.compare(password, board.password))) {
+      throw new ForbiddenException('비밀번호가 일치하지 않습니다.');
+    }
+    board.isDeleted = true;
+    await this.boardRepository.save(board);
   }
 }
