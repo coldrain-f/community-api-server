@@ -56,7 +56,8 @@
 <br>
 
 ## 🔀 ERD(Entity Relationship Diagram)
-![image](https://user-images.githubusercontent.com/81298415/188770561-297821b0-21d1-4934-84ec-8202a12c7730.png)
+![image](https://user-images.githubusercontent.com/81298415/188783284-cf26d6ca-c8e1-4886-acf0-51de5451343b.png)
+
 
 ## 🛰️ API 명세서
 Swagger Hub: https://app.swaggerhub.com/apis-docs/kakusi/thinksflow/1.0.0
