@@ -8,6 +8,8 @@
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1.svg?&style=for-the-badge&logo=MySQL&logoColor=white)
 ![Swagger](https://img.shields.io/badge/Swagger-85EA2D.svg?&style=for-the-badge&logo=Swagger&logoColor=white)
 
+<br>
+
 ## 🛰️ 요구사항 분석
 
 #### 게시글 엔티티 필요 속성 분석
@@ -54,7 +56,11 @@
 ## 🔀 ERD(Entity Relationship Diagram)
 ![image](https://user-images.githubusercontent.com/81298415/188770561-297821b0-21d1-4934-84ec-8202a12c7730.png)
 
-## API 명세서
+## 🛰️ API 명세서
 Swagger Hub: https://app.swaggerhub.com/apis-docs/kakusi/thinksflow/1.0.0
 
+<br>
+
+## 🔥 e2e 테스트 
+![image](https://user-images.githubusercontent.com/81298415/188782239-40121b5f-6919-4339-98d3-3da5852d6a95.png)
 
