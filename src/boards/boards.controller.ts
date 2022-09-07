@@ -32,8 +32,22 @@ export class BoardsController {
     return await this.boardsService.create(createBoardDto);
   }
 
-  @ApiOperation({ summary: '게시글 목록 조회 - 페이징' })
-  @ApiOkResponse({ description: '게시글 목록 조회 성공' })
+  @ApiOperation({ summary: '게시글 목록 조회' })
+  @ApiOkResponse({
+    description: '게시글 목록 조회 성공',
+    schema: {
+      example: [
+        {
+          id: 1,
+          title: '게시글 제목',
+          content: '게시글 본문',
+          weather: '대체로 맑음',
+          createdAt: '2022-09-06T07:38:53.187Z',
+          updatedAt: '2022-09-06T07:38:53.187Z',
+        },
+      ],
+    },
+  })
   @Get()
   findAll(@Query('page', ParseIntPipe) page: number) {
     return this.boardsService.findAll(page);
