@@ -55,12 +55,27 @@
 
 <br>
 
+## 🛰️ API 명세서
+**Swagger Hub:**
+
+https://app.swaggerhub.com/apis-docs/kakusi/thinksflow/1.0.0
+
+<br>
+
 ## 🔀 ERD(Entity Relationship Diagram)
 ![image](https://user-images.githubusercontent.com/81298415/188783284-cf26d6ca-c8e1-4886-acf0-51de5451343b.png)
 
-
-## 🛰️ API 명세서
-Swagger Hub: https://app.swaggerhub.com/apis-docs/kakusi/thinksflow/1.0.0
+## ✨ 프로젝트 구조
+```
+project/
+├─ src/
+│  ├─ boards/
+│  ├─ database
+├─ app.controller.ts
+├─ app.module.ts
+├─ app.service.ts
+├─ main.ts
+```
 
 <br>
 
