@@ -3,7 +3,7 @@ import { IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class UpdateBoardDto {
   @ApiProperty({
-    example: '백견이불여일타 JSP & Servlet',
+    example: '게시글 제목',
     description: '게시글의 제목입니다.',
     required: true,
   })
@@ -13,7 +13,7 @@ export class UpdateBoardDto {
   title: string;
 
   @ApiProperty({
-    example: '페이지네이션과 필터링의 차이는...',
+    example: '게시글 본문',
     description: '게시글의 본문입니다.',
     required: true,
   })
@@ -23,7 +23,7 @@ export class UpdateBoardDto {
   content: string;
 
   @ApiProperty({
-    example: 'ppppp1',
+    example: 'password0',
     description: '게시글의 비밀번호입니다.',
     required: true,
   })
