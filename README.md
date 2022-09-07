@@ -51,6 +51,10 @@
 - 저장 이후에 수정이 불가하도록 readonly 속성 추가
 
 
-## ERD(Entity Relationship Diagram)
+## 🔀 ERD(Entity Relationship Diagram)
 ![image](https://user-images.githubusercontent.com/81298415/188770561-297821b0-21d1-4934-84ec-8202a12c7730.png)
+
+## API 명세서
+Swagger Hub: https://app.swaggerhub.com/apis-docs/kakusi/thinksflow/1.0.0
+
 
