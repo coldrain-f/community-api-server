@@ -49,3 +49,8 @@
 - https://www.weatherapi.com 의 Real-time Weather API 사용
 - Nest.js의 HttpService를 DI받아서 날씨 API에 요청하여 요청 시점의 한국 날씨 정보를 받아와 저장
 - 저장 이후에 수정이 불가하도록 readonly 속성 추가
+
+
+## ERD(Entity Relationship Diagram)
+![image](https://user-images.githubusercontent.com/81298415/188770561-297821b0-21d1-4934-84ec-8202a12c7730.png)
+
