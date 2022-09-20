@@ -1,6 +1,9 @@
 # Weather Community REST API Server
 
-<img src="https://user-images.githubusercontent.com/81298415/189107702-f709792c-659c-46fb-b238-58e502b08931.png" width="300" height="300"/>
+<p align="left">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
+
 
 
 ### 🏹 기술 스택
